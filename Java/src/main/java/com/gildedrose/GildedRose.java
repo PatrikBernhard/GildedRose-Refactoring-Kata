@@ -24,37 +24,31 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : this.items) {
-            // If item is NOT the two that gets increased quality in time (Brie, Backstage pass)
-            if (!item.name.equals("Aged Brie") // Two NOT equal checks
-                    && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                //  Check to ensure doesn't go negative.
-                // Maybe should be additional method making sure quality is well defined (i.e. 0 <= quality <= 50 for non-legendary)
-                if (item.quality > LOWEST_QUALITY) { 
-                    //Another NOT check, should be an inclusive check or at least be with the first 2
-                    if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                        // Gets here if NOT brie, pass or sulfuras and quality not < 0.
-                        item.quality = item.quality - 1;
-                    }
-                }
-            // Hard to read nested branches, reaches here if Aged Brie or Backstage Pass (Note: not Sulfuras)
-            } else {
-                    item.quality = item.quality + 1;
+            // Part 1, always increase despite what date it is
+            if (!item.name.equals("Aged Brie")
+                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")
+                && !item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    item.quality = item.quality - 1;
 
-                    // Checks if Backstage pass but no else for Aged Brie (Note: no NOT this time)
-                    if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.sellIn < 11) { // Checking if should be increased by 2
-                                item.quality = item.quality + 1; // Should be a 2 if not for previous increase
-                        }
-                        if (item.sellIn < 6) {
-                                item.quality = item.quality + 1; // Should be 3 if not for previous increases
-                        }
-                    }
+            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                if (10 < item.sellIn) {
+                    item.quality = item.quality + 1;
+                } else if (6 <= item.sellIn && item.sellIn <= 10) {
+                    item.quality = item.quality + 2;
+                } else if (item.sellIn <= 5) {
+                    item.quality = item.quality + 3;
+                }
+            } else if (item.name.equals("Aged Brie")) {
+                item.quality = item.quality + 1;
             }
+            // Part 2, decrease sell in
+
             // Again, a NOT check for Sulfuras
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 item.sellIn = item.sellIn - 1;
             }
-            // If passed due date
+            
+            // Part 3, handle changes according to due date
             if (item.sellIn < DUE_DATE) {
                 if (!item.name.equals("Aged Brie")) {
                     if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
