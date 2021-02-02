@@ -3,7 +3,6 @@ package com.gildedrose;
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
-
         Item[] items = new Item[] {
                 new Item("Sulfuras, Hand of Ragnaros", 1, 80),
                 new Item("Sulfuras, Hand of Ragnaros", 0, 80),
@@ -33,11 +32,12 @@ public class TexttestFixture {
                 new Item("Elixir of the Mongoose", 10, 0),
                 new Item("Elixir of the Mongoose", 5, 7),
                 
-                // These conjured items do not work properly yet
                 new Item("Conjured Mana Cake", 3, 6),
                 new Item("Conjured Mana Cookie", -1, 2),
                 new Item("Conjured Health Potion", 0, 10),
-                new Item("Weapon that has been conjured", 10, 0)};
+                new Item("Weapon that has been conjured", 10, 0),
+                new Item("Weapon that has been conjured", 10, 30),
+                new Item("Weapon that has been conjured", -4, 30)};
 
         GildedRose app = new GildedRose(items);
 

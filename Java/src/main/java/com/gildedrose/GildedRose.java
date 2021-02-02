@@ -20,46 +20,13 @@ class GildedRose {
             }
         }
     }
+    private IdentifiedItem identifyItems(Item item) {
+        return new IdentifyItemFactory().identifyItem(item);
+    }
 
     public void updateQuality() {
         for (Item item : this.items) {
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sellIn = item.sellIn - 1;
-            }
-
-            if (item.sellIn < DUE_DATE) { // If DUE_DATE has passed
-                
-                if (item.name.equals("Aged Brie")) {
-                    item.quality = item.quality + 2;
-                } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        item.quality = 0;
-                } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    // Currently do nothing
-                } else if (item.name.toLowerCase().contains("conjured")) {
-                    item.quality = item.quality - 4;
-                } else {
-                    item.quality = item.quality - 2;
-                }
-            } else { // If DUE_DATE is not yet passed
-
-                if (item.name.equals("Aged Brie")) {
-                    item.quality = item.quality + 1;
-                } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (10 < item.sellIn) {
-                        item.quality = item.quality + 1;
-                    } else if (6 <= item.sellIn && item.sellIn <= 10) {
-                        item.quality = item.quality + 2;
-                    } else if (item.sellIn <= 5) {
-                        item.quality = item.quality + 3;
-                    }
-                } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    // Currently do nothing
-                } else if (item.name.toLowerCase().contains("conjured")) {
-                    item.quality = item.quality - 2;
-                } else {
-                    item.quality = item.quality - 1;
-                }
-            }
+            identifyItems(item).update();
             setQualityInRange(item);
         }
     }
