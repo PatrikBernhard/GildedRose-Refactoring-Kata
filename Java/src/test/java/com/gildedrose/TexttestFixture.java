@@ -5,16 +5,39 @@ public class TexttestFixture {
         System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
-                new Item("+5 Dexterity Vest", 10, 20), //
-                new Item("Aged Brie", 2, 0), //
-                new Item("Elixir of the Mongoose", 5, 7), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
+                new Item("Sulfuras, Hand of Ragnaros", 1, 80),
+                new Item("Sulfuras, Hand of Ragnaros", 0, 80),
                 new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+
                 new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                // this conjured item does not work properly yet
-                new Item("Conjured Mana Cake", 3, 6) };
+                new Item("Backstage passes to a TAFKAL80ETC concert", 3, 20),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 3, 48),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20),
+                new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20),
+                new Item("Backstage passes to a TAFKAL80ETC concert", -2, 0),
+
+                new Item("Aged Brie", -1, 0),
+                new Item("Aged Brie", 1, 49),
+                new Item("Aged Brie", 1, 50),
+                new Item("Aged Brie", 2, 0),
+                new Item("Aged Brie", 10, 10),
+
+                new Item("+5 Dexterity Vest", 10, 20),
+                new Item("Elixir of the Mongoose", -1, 1),
+                new Item("Elixir of the Mongoose", -4, 10),
+                new Item("Elixir of the Mongoose", 0, 0),
+                new Item("Elixir of the Mongoose", 10, 0),
+                new Item("Elixir of the Mongoose", 5, 7),
+                
+                // These conjured items do not work properly yet
+                new Item("Conjured Mana Cake", 3, 6),
+                new Item("Conjured Mana Cookie", -1, 2),
+                new Item("Conjured Health Potion", 0, 10),
+                new Item("Weapon that has been conjured", 10, 0)};
 
         GildedRose app = new GildedRose(items);
 
