@@ -24,40 +24,36 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : this.items) {
-            // Part 1, always increase despite what date it is
-            if (!item.name.equals("Aged Brie")
-                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")
-                && !item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    item.quality = item.quality - 1;
-
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (10 < item.sellIn) {
-                    item.quality = item.quality + 1;
-                } else if (6 <= item.sellIn && item.sellIn <= 10) {
-                    item.quality = item.quality + 2;
-                } else if (item.sellIn <= 5) {
-                    item.quality = item.quality + 3;
-                }
-            } else if (item.name.equals("Aged Brie")) {
-                item.quality = item.quality + 1;
-            }
-            // Part 2, decrease sell in
-
-            // Again, a NOT check for Sulfuras
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 item.sellIn = item.sellIn - 1;
             }
-            
-            // Part 3, handle changes according to due date
-            if (item.sellIn < DUE_DATE) {
-                if (!item.name.equals("Aged Brie")
-                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")
-                && !item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                        item.quality = item.quality - 1;
+
+            if (item.sellIn < DUE_DATE) { // If DUE_DATE has passed
+                if (item.name.equals("Aged Brie")) {
+                    item.quality = item.quality + 2;
                 } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         item.quality = 0;
-                } else if (item.name.equals("Aged Brie")) { 
+                } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    // Currently do nothing
+                } else {
+                    item.quality = item.quality - 2;
+                }
+            } else { // If DUE_DATE is not yet passed
+
+                if (item.name.equals("Aged Brie")) {
+                    item.quality = item.quality + 1;
+                } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (10 < item.sellIn) {
                         item.quality = item.quality + 1;
+                    } else if (6 <= item.sellIn && item.sellIn <= 10) {
+                        item.quality = item.quality + 2;
+                    } else if (item.sellIn <= 5) {
+                        item.quality = item.quality + 3;
+                    }
+                } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    // Currently do nothing
+                } else {
+                    item.quality = item.quality - 1;
                 }
             }
             setQualityInRange(item);
