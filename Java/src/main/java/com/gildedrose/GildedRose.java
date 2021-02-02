@@ -50,20 +50,14 @@ class GildedRose {
             
             // Part 3, handle changes according to due date
             if (item.sellIn < DUE_DATE) {
-                if (!item.name.equals("Aged Brie")) {
-                    if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        // Decrease items that are not brie and backstage pass again by 1
-                            // And also if not Sulfuras
-                            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                                item.quality = item.quality - 1;
-                            }
-                    } else { // If backstage pass and passed due date
-                        // Set to 0
+                if (!item.name.equals("Aged Brie")
+                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")
+                && !item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                        item.quality = item.quality - 1;
+                } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         item.quality = 0;
-                    }
-                } else { // If Aged Brie is passed due date, this will increase it by an additional 1.
+                } else if (item.name.equals("Aged Brie")) { 
                         item.quality = item.quality + 1;
-
                 }
             }
             setQualityInRange(item);
