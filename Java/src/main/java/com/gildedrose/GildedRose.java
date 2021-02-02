@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
 
 class GildedRose {
     Item[] items;
@@ -29,12 +28,15 @@ class GildedRose {
             }
 
             if (item.sellIn < DUE_DATE) { // If DUE_DATE has passed
+                
                 if (item.name.equals("Aged Brie")) {
                     item.quality = item.quality + 2;
                 } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         item.quality = 0;
                 } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
                     // Currently do nothing
+                } else if (item.name.toLowerCase().contains("conjured")) {
+                    item.quality = item.quality - 4;
                 } else {
                     item.quality = item.quality - 2;
                 }
@@ -52,6 +54,8 @@ class GildedRose {
                     }
                 } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
                     // Currently do nothing
+                } else if (item.name.toLowerCase().contains("conjured")) {
+                    item.quality = item.quality - 2;
                 } else {
                     item.quality = item.quality - 1;
                 }
